@@ -1,0 +1,22 @@
+<div class="ngx_notification-msg-container"
+     [class.ngx-notification-msg-opened]="componentState === componentStates.OPEN">
+    <div class="ngx_notification-msg-strip"
+         [class.ngx_notification-success-strip]="status === statuses.SUCCESS"
+         [class.ngx_notification-failure-strip]="status === statuses.FAILURE"
+         [class.ngx_notification-info-strip]="status === statuses.INFO"
+         [class.ngx_notification-none-strip]="status === statuses.NONE">
+    </div>
+    <div class="ngx_notification-msg-content">
+        <div class="ngx-notification-msg-header">
+            {{header}}
+        </div>
+        <div class="ngx-notification-msg-body">
+            {{msg}}
+        </div>
+    </div>
+    <button class="ngx_close-button"
+            *ngIf="closeable"
+            (click)="close()">
+        X
+    </button>
+</div>

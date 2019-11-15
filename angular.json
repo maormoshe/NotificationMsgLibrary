@@ -119,6 +119,40 @@
           }
         }
       }
+    },
+    "ngx-notification-msg": {
+      "projectType": "library",
+      "root": "projects/ngx-notification-msg",
+      "sourceRoot": "projects/ngx-notification-msg/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-notification-msg/tsconfig.lib.json",
+            "project": "projects/ngx-notification-msg/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-notification-msg/src/test.ts",
+            "tsConfig": "projects/ngx-notification-msg/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-notification-msg/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-notification-msg/tsconfig.lib.json",
+              "projects/ngx-notification-msg/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "NotificationMsgLibrary"
 }
