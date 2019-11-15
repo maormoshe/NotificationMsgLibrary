@@ -18,8 +18,7 @@ export class AppComponent {
         this.ngxNotificationMsgService.open({
             status,
             header: this.header,
-            msg: this.msg,
-            delay: 300000000
+            msg: this.msg
         });
     }
 }
