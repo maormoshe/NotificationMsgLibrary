@@ -10,33 +10,29 @@ Angular Library to show notification message.
 
 ## Installation
 
-1. Download from npm
-
+1.&nbsp;Download from npm
 `npm install ngx-notification-msg --save`
 
-2. Import the `NgxNotificationMsgModule` module:
-
+2.&nbsp;Import the `NgxNotificationMsgModule` module
 `import {NgxNotificationMsgModule} from 'ngx-notification-msg'`
 
-3. Add `NgxNotificationMsgModule` to your module imports:
-
+3.&nbsp;Add `NgxNotificationMsgModule` to your module imports
 ```ts
  @NgModule({ ... imports: [ ... NgxNotificationMsgModule ] })
- ```
- 
-4. Import the `NgxNotificationMsgService` service in any angular component:
+```
 
+4.&nbsp;Import the `NgxNotificationMsgService` service in any angular component
 `import {NgxNotificationMsgService} from 'ngx-notification-msg'`
 
-5. Inject the `NgxNotificationMsgService` service in the angular component's constructor:
+5.&nbsp;Inject the `NgxNotificationMsgService` service in the angular component's constructor
 
 ```ts
  constructor(private readonly ngxNotificationMsgService: NgxNotificationMsgService) {
  
  }
- ```
+```
  
-6. Now you can use `ngxNotificationMsgService` service:
+6.&nbsp;Now you can use `ngxNotificationMsgService` service
 
 ```ts
  this.ngxNotificationMsgService.open({
@@ -44,7 +40,7 @@ Angular Library to show notification message.
     header: 'Hey',
     msg: 'How are you today ?!'
  });
- ```
+```
  
 ## API
 
