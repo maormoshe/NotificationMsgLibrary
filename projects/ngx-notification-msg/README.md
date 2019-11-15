@@ -4,9 +4,7 @@ Angular Library to display notification message.
 
 ## Demo
 
-- A simple usage example can be found under `src/app` directory of this repository.
-
-- You may also visit the online usage example on https://maormoshe.github.io/NotificationMsgLibrary/
+- You may visit the online usage example on https://maormoshe.github.io/NotificationMsgLibrary/
 
 ## Installation
 
