@@ -71,5 +71,4 @@ interface INgxNotificationMsgConfig {
     delay?: number;
     closeable?: boolean;
 }
- });
  ```
