@@ -11,17 +11,21 @@ Angular Library to show notification message.
 ## Installation
 
 1.&nbsp;Download from npm
+
 `npm install ngx-notification-msg --save`
 
 2.&nbsp;Import the `NgxNotificationMsgModule` module
+
 `import {NgxNotificationMsgModule} from 'ngx-notification-msg'`
 
 3.&nbsp;Add `NgxNotificationMsgModule` to your module imports
+
 ```ts
  @NgModule({ ... imports: [ ... NgxNotificationMsgModule ] })
 ```
 
 4.&nbsp;Import the `NgxNotificationMsgService` service in any angular component
+
 `import {NgxNotificationMsgService} from 'ngx-notification-msg'`
 
 5.&nbsp;Inject the `NgxNotificationMsgService` service in the angular component's constructor
