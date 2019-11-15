@@ -1,6 +1,6 @@
 # NgxNotificationMsg
 
-Angular Library to show notification message.
+Angular Library to display notification message.
 
 ## Demo
 
