@@ -1,0 +1,27 @@
+{
+  "name": "ngx-notification-msg",
+  "version": "0.0.1",
+  "description": "A simple Angular Library to show all types of notifications.",
+  "author": "Maor Moshe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maormoshe/NotificationMsgLibrary.git"
+  },
+  "homepage": "https://github.com/maormoshe/NotificationMsgLibrary",
+  "keywords": [
+    "angular",
+    "library",
+    "notification",
+    "notification message",
+    "notification msg",
+    "notification bar",
+    "popuop",
+    "popuop message",
+    "popuop msg"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.1.3",
+    "@angular/core": "^8.1.3"
+  }
+}
