@@ -52,7 +52,9 @@ Use the `NgxNotificationMsgService` service in any angular component you like.
 
 > #### Methods
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; open(inputsConfig: INgxNotificationMsgConfig, element?: Element): void
+```ts 
+open(inputsConfig: INgxNotificationMsgConfig, element?: Element): void
+```
 
 ## Enums & Interfaces
 
