@@ -7,7 +7,7 @@
   top: 0;
   left: 50%;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   align-items: center;
@@ -47,31 +47,34 @@
   }
 
   .ngx_notification-msg-content {
-    padding: 15px 20px;
+    padding: 10px 25px;
 
     .ngx-notification-msg-header {
-      margin: 0 0 8px 0;
+      line-height: 1.5;
       font-size: 15px;
       font-weight: 700;
       color: #565154;
     }
 
     .ngx-notification-msg-body {
+      line-height: 1.5;
       font-size: 13px;
       color: #93908C;
     }
   }
 
-  .ngx_close-button {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    border: 0;
-    outline: 0;
-    padding: 0;
-    font-size: 11px;
-    font-weight: 600;
-    color: #565154;
-    cursor: pointer;
+  .ngx_close-button-wrapper {
+    height: 100%;
+
+    .ngx_close-button {
+      border: 0;
+      outline: 0;
+      padding: 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: #565154;
+      background-color: transparent;
+      cursor: pointer;
+    }
   }
 }

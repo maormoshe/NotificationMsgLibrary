@@ -14,9 +14,11 @@
             {{msg}}
         </div>
     </div>
-    <button class="ngx_close-button"
-            *ngIf="closeable"
-            (click)="close()">
-        X
-    </button>
+    <div class="ngx_close-button-wrapper">
+        <button class="ngx_close-button"
+                *ngIf="closeable"
+                (click)="close()">
+            X
+        </button>
+    </div>
 </div>
