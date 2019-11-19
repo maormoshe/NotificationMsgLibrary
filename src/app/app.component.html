@@ -1,27 +1,35 @@
 <div class="nm_app">
-  <div class="nm_header">NgxNotificationMsg</div>
-  <div class="nm_inputs">
-    <div class="nm_header-container">
-      <span class="nm_header-title">Header</span>
-      <input class="nm_header-input" [(ngModel)]="header">
+    <div class="nm_header">NgxNotificationMsg</div>
+    <div class="nm_inputs">
+        <div class="nm_input-container">
+            <span class="nm_input-title">Header</span>
+            <input class="nm_input" [(ngModel)]="inputsConfig.header">
+        </div>
+        <div class="nm_input-container">
+            <span class="nm_input-title">Message</span>
+            <input class="nm_input" [(ngModel)]="inputsConfig.msg">
+        </div>
+        <div class="nm_input-container">
+            <span class="nm_input-title">Delay (ms)</span>
+            <input class="nm_input" type="number" [(ngModel)]="inputsConfig.delay">
+        </div>
+        <div class="nm_input-container">
+            <span class="nm_input-title">Closeable</span>
+            <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable" (change)="inputsConfig.closeable = !inputsConfig.closeable;">
+        </div>
     </div>
-    <div class="nm_msg-container">
-      <span class="nm_msg-title">Message</span>
-      <input class="nm_msg-input" [(ngModel)]="msg">
+    <div class="nm_buttons">
+        <button class="nm_success-button" (click)="open('SUCCESS')">
+            Success
+        </button>
+        <button class="nm_failure-button" (click)="open('FAILURE')">
+            Failure
+        </button>
+        <button class="nm_info-button" (click)="open('INFO')">
+            Info
+        </button>
+        <button class="nm_none-button" (click)="open('NONE')">
+            None
+        </button>
     </div>
-  </div>
-  <div class="nm_buttons">
-    <button class="nm_success-button" (click)="open('SUCCESS')">
-      Success
-    </button>
-    <button class="nm_failure-button" (click)="open('FAILURE')">
-      Failure
-    </button>
-    <button class="nm_info-button" (click)="open('INFO')">
-      Info
-    </button>
-    <button class="nm_none-button" (click)="open('NONE')">
-      None
-    </button>
-  </div>
 </div>
