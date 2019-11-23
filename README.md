@@ -1,5 +1,8 @@
 # NgxNotificationMsg
 
+[![NPM Version](https://img.shields.io/npm/v/ngx-notification-msg.svg)](https://www.npmjs.com/package/ngx-notification-msg)
+[![NPM Downloads](https://img.shields.io/npm/dt/ngx-notification-msg.svg)](https://www.npmjs.com/package/ngx-notification-msg)
+
 Angular Library to display notification message.
 
 ## Demo
