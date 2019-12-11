@@ -6,9 +6,8 @@ import {INgxNotificationMsgConfig, NgxNotificationMsgComponent} from './ngx-noti
 })
 export class NgxNotificationMsgService {
 
-    private readonly defaultContainer = document.querySelector('body');
-    private childComponentsRef: ChildComponentRef[] = [];
-    private total = 0;
+    private readonly defaultElement: Element = document.querySelector('body');
+    private appendElement: Element;
 
     constructor(private readonly componentFactoryResolver: ComponentFactoryResolver,
                 private readonly appRef: ApplicationRef,
@@ -16,26 +15,30 @@ export class NgxNotificationMsgService {
     }
 
     open(inputsConfig: INgxNotificationMsgConfig, element?: Element): void {
-        const childComponentRef = this.appendChildComponentRef(element || this.defaultContainer);
-
-        this.attachConfig(inputsConfig, childComponentRef);
-        this.subscribeToComponentDestroyEvent(childComponentRef);
-        this.childComponentsRef.push(childComponentRef);
-        this.updateComponentsIndexesOnOpen(this.childComponentsRef, this.total);
-        this.total++;
+        this.appendElement = element ? element : this.defaultElement;
+        this.appendComponent(inputsConfig);
     }
 
-    private appendChildComponentRef(container: Element): ChildComponentRef {
+    private appendComponent(inputsConfig?: INgxNotificationMsgConfig): void {
         const childComponentRef = this.componentFactoryResolver
             .resolveComponentFactory(NgxNotificationMsgComponent)
             .create(this.injector);
+
+        this.attachConfig(inputsConfig, childComponentRef);
+        this.subscribeToComponentDestroyEvent(childComponentRef);
+        this.appRef.attachView(childComponentRef.hostView);
+
         const childDomElem = (childComponentRef.hostView as EmbeddedViewRef<any>)
             .rootNodes[0] as HTMLElement;
 
-        this.appRef.attachView(childComponentRef.hostView);
-        container.appendChild(childDomElem);
+        this.appendElement.appendChild(childDomElem);
+    }
 
-        return childComponentRef;
+    private subscribeToComponentDestroyEvent(componentRef: ComponentRef<NgxNotificationMsgComponent>): void {
+        const sub = componentRef.instance.destroy.subscribe(() => {
+            this.destroy(componentRef);
+            sub.unsubscribe();
+        });
     }
 
     private attachConfig(inputsConfig: INgxNotificationMsgConfig, componentRef): void {
@@ -44,35 +47,8 @@ export class NgxNotificationMsgService {
         });
     }
 
-    private subscribeToComponentDestroyEvent(componentRef: ChildComponentRef): void {
-        const sub = componentRef.instance.destroy.subscribe(() => {
-            sub.unsubscribe();
-            this.destroy(componentRef);
-            this.removeChildComponentRef(componentRef);
-            this.updateComponentsIndexesOnDestroy(this.childComponentsRef, --this.total);
-        });
-    }
-
-    private destroy(componentRef: ChildComponentRef): void {
+    private destroy(componentRef: ComponentRef<NgxNotificationMsgComponent>): void {
         this.appRef.detachView(componentRef.hostView);
         componentRef.destroy();
     }
-
-    private removeChildComponentRef(componentRef: ChildComponentRef): void {
-        this.childComponentsRef = this.childComponentsRef.filter((_) => _ !== componentRef);
-    }
-
-    private updateComponentsIndexesOnDestroy(childComponentsRef: ChildComponentRef[], total: number): void {
-        childComponentsRef.forEach(({instance}) => {
-            instance.index = --total;
-        });
-    }
-
-    private updateComponentsIndexesOnOpen(childComponentsRef: ChildComponentRef[], total: number): void {
-        childComponentsRef.forEach(({instance}) => {
-            instance.index = total--;
-        });
-    }
 }
-
-type ChildComponentRef = ComponentRef<NgxNotificationMsgComponent>;

@@ -1,6 +1,5 @@
 <div class="ngx_notification-msg-container"
-     [class.ngx-notification-msg-opened]="componentState === componentStates.OPEN"
-     [ngStyle]="componentState === componentStates.OPEN && getPosition()">
+     [class.ngx-notification-msg-opened]="componentState === componentStates.OPEN">
     <div class="ngx_notification-msg-strip"
          [class.ngx_notification-success-strip]="status === statuses.SUCCESS"
          [class.ngx_notification-failure-strip]="status === statuses.FAILURE"
