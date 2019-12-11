@@ -13,6 +13,7 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
     @Input() msg: string;
     @Input() delay = 3000;
     @Input() closeable = true;
+    @Input() index: number;
 
     @Output() destroy: EventEmitter<any> = new EventEmitter();
 
@@ -36,10 +37,13 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     close(): void {
         this.componentState = NgxNotificationMsgComponentState.CLOSE;
-
         setTimeout(() => {
             this.destroy.emit();
         }, NgxNotificationMsgComponent.DELAY_ON_CLICK);
+    }
+
+    getPosition(): { transform: string } {
+        return {transform: `translate(-50%, calc(${100 * this.index}% + ${20 * (this.index + 1)}px`};
     }
 
     private autoSelfDestroy(): void {
