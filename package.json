@@ -45,5 +45,8 @@
     "tsickle": "^0.35.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
+  },
+  "resolutions": {
+    "serialize-javascript": "^2.1.1"
   }
 }
