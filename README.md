@@ -11,6 +11,8 @@ Angular Library to display notification message.
 
 - You may also visit the online usage example on https://maormoshe.github.io/NotificationMsgLibrary/
 
+![](demo.gif)
+
 ## Installation
 
 1.&nbsp;Download from npm
