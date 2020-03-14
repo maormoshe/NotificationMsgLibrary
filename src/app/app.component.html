@@ -14,8 +14,16 @@
             <input class="nm_input" type="number" [(ngModel)]="inputsConfig.delay">
         </div>
         <div class="nm_input-container">
+            <span class="nm_input-title">Direction</span>
+            <select class="nm_input" (change)="onDirectionChange($event)">
+                <option *ngFor="let direction of directions" [value]="direction">{{direction}}</option>
+            </select>
+            <span class="nm_note">Note: multiple directions can't live at the same time.</span>
+        </div>
+        <div class="nm_input-container">
             <span class="nm_input-title">Closeable</span>
-            <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable" (change)="inputsConfig.closeable = !inputsConfig.closeable;">
+            <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable"
+                   (change)="inputsConfig.closeable = !inputsConfig.closeable;">
         </div>
     </div>
     <div class="nm_buttons">

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxNotificationMsgService} from '../../projects/ngx-notification-msg/src/lib/ngx-notification-msg.service';
-import {INgxNotificationMsgConfig} from '../../projects/ngx-notification-msg/src/lib/ngx-notification-msg.component';
+import {
+    INgxNotificationMsgConfig,
+    NgxNotificationDirection
+} from '../../projects/ngx-notification-msg/src/lib/ngx-notification-msg.component';
 
 @Component({
     selector: 'app-root',
@@ -9,6 +12,15 @@ import {INgxNotificationMsgConfig} from '../../projects/ngx-notification-msg/src
 })
 export class AppComponent implements OnInit {
     inputsConfig: INgxNotificationMsgConfig;
+    directions: NgxNotificationDirection[] = [
+        NgxNotificationDirection.TOP,
+        NgxNotificationDirection.TOP_RIGHT,
+        NgxNotificationDirection.BOTTOM_RIGHT,
+        NgxNotificationDirection.BOTTOM,
+        NgxNotificationDirection.BOTTOM_LEFT,
+        NgxNotificationDirection.TOP_LEFT
+    ];
+    direction: NgxNotificationDirection = this.directions[0];
 
     constructor(private readonly ngxNotificationMsgService: NgxNotificationMsgService) {
 
@@ -26,7 +38,12 @@ export class AppComponent implements OnInit {
     open(status: any): void {
         this.ngxNotificationMsgService.open({
             status,
-            ...this.inputsConfig
+            ...this.inputsConfig,
+            direction: this.direction
         });
+    }
+
+    onDirectionChange(event: any): void {
+        this.direction = event.target.value;
     }
 }

@@ -71,11 +71,24 @@ export enum NgxNotificationStatusMsg {
     NONE = 'NONE'
 }
 
+export enum NgxNotificationDirection {
+    TOP = 'TOP',
+    TOP_RIGHT = 'TOP_RIGHT',
+    TOP_LEFT = 'TOP_LEFT',
+    BOTTOM = 'BOTTOM',
+    BOTTOM_RIGHT = 'BOTTOM_RIGHT',
+    BOTTOM_LEFT = 'BOTTOM_LEFT'
+}
+
 interface INgxNotificationMsgConfig {
     status?: NgxNotificationStatusMsg;
+    direction?: NgxNotificationDirection;
     header?: string;
     msg: string;
     delay?: number;
     closeable?: boolean;
 }
  ```
+
+## Notes
+* Multiple directions can't live at the same time.

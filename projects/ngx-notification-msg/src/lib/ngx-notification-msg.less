@@ -4,8 +4,6 @@
 
 .ngx_notification-msg-container {
   position: absolute;
-  top: 0;
-  left: 50%;
   opacity: 0;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -15,7 +13,6 @@
   background-color: white;
   color: #878787;
   font-family: 'Raleway', 'Arial', sans-serif;
-  transform: translate(-50%, -100%);
   transition: 200ms cubic-bezier(0.75, 0, 0.75, 0.9);
 
   &.ngx-notification-msg-opened {
