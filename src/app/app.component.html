@@ -20,10 +20,22 @@
             </select>
             <span class="nm_note">Note: multiple directions can't live at the same time.</span>
         </div>
-        <div class="nm_input-container">
-            <span class="nm_input-title">Closeable</span>
-            <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable"
-                   (change)="inputsConfig.closeable = !inputsConfig.closeable;">
+        <div class="nm_checkbox-inputs-container">
+            <div class="nm_input-container">
+                <span class="nm_input-title">Display Icon</span>
+                <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayIcon"
+                       (change)="inputsConfig.displayIcon = !inputsConfig.displayIcon;">
+            </div>
+            <div class="nm_input-container">
+                <span class="nm_input-title">Display Progress Bar</span>
+                <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayProgressBar"
+                       (change)="inputsConfig.displayProgressBar = !inputsConfig.displayProgressBar;">
+            </div>
+            <div class="nm_input-container">
+                <span class="nm_input-title">Closeable</span>
+                <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable"
+                       (change)="inputsConfig.closeable = !inputsConfig.closeable;">
+            </div>
         </div>
     </div>
     <div class="nm_buttons">

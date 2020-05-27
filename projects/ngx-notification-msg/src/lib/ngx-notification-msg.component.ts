@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'ngx-notification-msg',
@@ -10,6 +10,8 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     @Input() status: NgxNotificationStatusMsg = NgxNotificationStatusMsg.NONE;
     @Input() direction: NgxNotificationDirection = NgxNotificationDirection.TOP;
+    @Input() displayProgressBar = true;
+    @Input() displayIcon = true;
     @Input() header: string;
     @Input() msg: string;
     @Input() delay = 3000;
@@ -21,17 +23,24 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
     componentState: NgxNotificationMsgComponentState = NgxNotificationMsgComponentState.CLOSE;
     componentStates = NgxNotificationMsgComponentState;
     statusToClass = {
-        [NgxNotificationStatusMsg.NONE]: 'ngx_notification-none-strip',
-        [NgxNotificationStatusMsg.INFO]: 'ngx_notification-info-strip',
-        [NgxNotificationStatusMsg.FAILURE]: 'ngx_notification-failure-strip',
-        [NgxNotificationStatusMsg.SUCCESS]: 'ngx_notification-success-strip'
+        [NgxNotificationStatusMsg.NONE]: '',
+        [NgxNotificationStatusMsg.INFO]: '#0067FF',
+        [NgxNotificationStatusMsg.FAILURE]: '#FE355A',
+        [NgxNotificationStatusMsg.SUCCESS]: '#00CC69'
     };
+    readonly none = 'NONE';
 
-    constructor(private readonly cd: ChangeDetectorRef) {
+    private closeTimeout;
+    private destroyTimeout;
+    private referencePointTimestamp;
+    private mouseEnterTimestamp;
+
+    constructor(private readonly cd: ChangeDetectorRef,
+                private readonly element: ElementRef) {
     }
 
     ngOnInit(): void {
-        this.autoSelfDestroy();
+        this.init();
     }
 
     ngAfterViewInit(): void {
@@ -39,6 +48,20 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
             this.componentState = NgxNotificationMsgComponentState.OPEN;
             this.cd.markForCheck();
         });
+    }
+
+    mouseEnter(): void {
+        this.mouseEnterTimestamp = performance.now();
+
+        clearTimeout(this.closeTimeout);
+        clearTimeout(this.destroyTimeout);
+    }
+
+    mouseLeave(): void {
+        const timestampGap = this.mouseEnterTimestamp - this.referencePointTimestamp;
+
+        this.autoSelfDestroy(this.delay - timestampGap);
+        this.referencePointTimestamp = performance.now() - timestampGap;
     }
 
     close(): void {
@@ -54,6 +77,17 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
             ...this.getDefaultPosition(),
             ...(this.componentState === this.componentStates.OPEN && this.getDynamicPosition())
         };
+    }
+
+    private init(): void {
+        this.referencePointTimestamp = performance.now();
+        this.initTheme();
+        this.autoSelfDestroy(this.delay);
+    }
+
+    private initTheme(): void {
+        this.element.nativeElement.style.setProperty('--ngx-notification-msg-delay', `${this.delay}ms`);
+        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.statusToClass[this.status]);
     }
 
     private getDefaultPosition(): INgxNotificationPosition {
@@ -93,15 +127,15 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
         }
     }
 
-    private autoSelfDestroy(): void {
-        setTimeout(() => {
+    private autoSelfDestroy(delay: number): void {
+        this.closeTimeout = setTimeout(() => {
             this.componentState = NgxNotificationMsgComponentState.CLOSE;
             this.cd.markForCheck();
-        }, this.delay);
+        }, delay);
 
-        setTimeout(() => {
+        this.destroyTimeout = setTimeout(() => {
             this.destroy.emit();
-        }, this.delay + NgxNotificationMsgComponent.DELAY_ON_CLICK);
+        }, delay + NgxNotificationMsgComponent.DELAY_ON_CLICK);
     }
 }
 
@@ -140,5 +174,7 @@ export interface INgxNotificationMsgConfig {
     header?: string;
     msg: string;
     delay?: number;
+    displayIcon?: boolean;
+    displayProgressBar?: boolean;
     closeable?: boolean;
 }

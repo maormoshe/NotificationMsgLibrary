@@ -1,22 +1,53 @@
-<div class="ngx_notification-msg-container"
-     [class.ngx-notification-msg-opened]="componentState === componentStates.OPEN"
-     [ngStyle]="getPosition()">
-    <div class="ngx_notification-msg-strip"
-         [ngClass]="statusToClass[status]">
+<div class="ngx_notification-msg"
+     [class.ngx_notification-msg-opened]="componentState === componentStates.OPEN"
+     [class.ngx_notification-msg-progress-bar]="status !== none && displayProgressBar"
+     [ngStyle]="getPosition()"
+     (mouseenter)="mouseEnter()"
+     (mouseleave)="mouseLeave()">
+    <div class="ngx_notification-msg-icon-wrapper"
+         *ngIf="status !== none && displayIcon">
+        <svg>
+            <use [attr.xlink:href]="statusToClass[status]"/>
+        </svg>
     </div>
     <div class="ngx_notification-msg-content">
-        <div class="ngx-notification-msg-header">
+        <div class="ngx_notification-msg-header">
             {{header}}
         </div>
-        <div class="ngx-notification-msg-body">
+        <div class="ngx_notification-msg-body">
             {{msg}}
         </div>
     </div>
-    <div class="ngx_close-button-wrapper">
-        <button class="ngx_close-button"
-                *ngIf="closeable"
+    <div class="ngx_notification-msg-close-button">
+        <button *ngIf="closeable"
                 (click)="close()">
-            ✕
+            <svg>
+                <use [attr.xlink:href]="'#clear'"/>
+            </svg>
         </button>
     </div>
 </div>
+
+<svg display="none">
+    <symbol width="24" height="24" viewBox="0 0 32 32" id="00CC69">
+        <path d="M16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 Z M23.6,9.6 L13,20.2 L8.8,16 L7.4,17.4 L13,23 L25,11 L23.6,9.6 Z"/>
+    </symbol>
+</svg>
+
+<svg display="none">
+    <symbol width="24" height="24" viewBox="0 0 32 32" id="FE355A">
+        <path d="M16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 Z M21.59,9 L16,14.59 L10.41,9 L9,10.41 L14.59,16 L9,21.59 L10.41,23 L16,17.41 L21.59,23 L23,21.59 L17.41,16 L23,10.41 L21.59,9 Z"/>
+    </symbol>
+</svg>
+
+<svg display="none">
+    <symbol width="24" height="24" viewBox="0 0 32 32" id="0067FF">
+        <path d="M16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 Z M17,12 L15,12 L15,24 L17,24 L17,12 Z M17,8 L15,8 L15,10 L17,10 L17,8 Z"/>
+    </symbol>
+</svg>
+
+<svg display="none">
+    <symbol viewBox="0 0 24 24" id="clear">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </symbol>
+</svg>

@@ -31,6 +31,8 @@ export class AppComponent implements OnInit {
             header: 'Ops...',
             msg: 'Anyone with access can view your invited visitors.',
             delay: 3000,
+            displayIcon: true,
+            displayProgressBar: true,
             closeable: true
         };
     }

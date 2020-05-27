@@ -17,10 +17,14 @@
 
   .nm_inputs {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
     width: 600px;
 
+    .nm_checkbox-inputs-container {
+      display: flex;
+      justify-content: space-around;
+    }
 
     .nm_input-container {
       display: flex;
@@ -64,15 +68,15 @@
     }
 
     .nm_success-button {
-      background-color: #2CDE3E;
+      background-color: #00CC69;
     }
 
     .nm_failure-button {
-      background-color: #DA3637;
+      background-color: #FE355A;
     }
 
     .nm_info-button {
-      background-color: #1C72F3;
+      background-color: #0067FF;
     }
 
     .nm_none-button {

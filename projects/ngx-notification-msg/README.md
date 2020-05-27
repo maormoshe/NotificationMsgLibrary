@@ -84,6 +84,8 @@ interface INgxNotificationMsgConfig {
     header?: string;
     msg: string;
     delay?: number;
+    displayIcon?: boolean;
+    displayProgressBar?: boolean;
     closeable?: boolean;
 }
  ```
