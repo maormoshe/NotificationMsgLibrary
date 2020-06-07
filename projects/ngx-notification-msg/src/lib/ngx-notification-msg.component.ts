@@ -136,7 +136,15 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
         this.destroyTimeout = setTimeout(() => {
             this.destroy.emit();
         }, delay + NgxNotificationMsgComponent.DELAY_ON_CLICK);
-    }
+  }
+
+  private isArray = (msg: any) => {
+    let isArray = false;
+    if (msg instanceof Array)
+      isArray = true;
+
+    return isArray;
+  }
 }
 
 interface INgxNotificationPosition {
@@ -172,7 +180,7 @@ export interface INgxNotificationMsgConfig {
     status?: NgxNotificationStatusMsg;
     direction?: NgxNotificationDirection;
     header?: string;
-    msg: string;
+    msg: any; 
     delay?: number;
     displayIcon?: boolean;
     displayProgressBar?: boolean;

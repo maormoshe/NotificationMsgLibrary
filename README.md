@@ -50,6 +50,13 @@ Angular Library to display notification message.
     msg: 'How are you today ?!'
  });
 ```
+```ts
+ this.ngxNotificationMsgService.open({
+    status: NgxNotificationStatusMsg.SUCCESS,
+    header: 'Hey',
+    msg: ['Hello','How are you today ?!']
+ });
+```
  
 ## API
 
@@ -84,7 +91,7 @@ interface INgxNotificationMsgConfig {
     status?: NgxNotificationStatusMsg;
     direction?: NgxNotificationDirection;
     header?: string;
-    msg: string;
+    msg: any;
     delay?: number;
     displayIcon?: boolean;
     displayProgressBar?: boolean;

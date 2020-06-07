@@ -11,6 +11,8 @@ import {
     styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
+  public messages: any[] = ['Anyone with access can view your invited visitors.','Sample Message'];
+  public message: string;
     inputsConfig: INgxNotificationMsgConfig;
     directions: NgxNotificationDirection[] = [
         NgxNotificationDirection.TOP,
@@ -28,8 +30,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.inputsConfig = {
-            header: 'Ops...',
-            msg: 'Anyone with access can view your invited visitors.',
+          header: 'Ops...',
+          msg: this.messages,
             delay: 3000,
             displayIcon: true,
             displayProgressBar: true,
@@ -37,7 +39,8 @@ export class AppComponent implements OnInit {
         };
     }
 
-    open(status: any): void {
+  open(status: any): void {
+       this.inputsConfig.msg = this.messages;
         this.ngxNotificationMsgService.open({
             status,
             ...this.inputsConfig,
@@ -45,7 +48,25 @@ export class AppComponent implements OnInit {
         });
     }
 
+
+  openWithSingleMessage(status: any): void {
+    this.inputsConfig.msg = this.messages[0];
+    this.ngxNotificationMsgService.open({
+      status,
+      ...this.inputsConfig,
+      direction: this.direction
+    });
+  }
+
+
     onDirectionChange(event: any): void {
         this.direction = event.target.value;
-    }
+  }
+  AddMessage(): void {
+    this.messages.push(this.message);
+    this.message = null;
+  }
+  DeleteMessage(message): void {
+    this.messages = this.messages.filter(x => x !== message);
+  }
 }

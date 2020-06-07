@@ -1,42 +1,63 @@
 <div class="nm_app">
     <div class="nm_header">NgxNotificationMsg</div>
     <div class="nm_inputs">
+      <div class="nm_input-container">
+        <span class="nm_input-title">Header</span>
+        <input class="nm_input" [(ngModel)]="inputsConfig.header">
+      </div>
+      <div class="nm_input-container">
+        <span class="nm_input-title">Message</span>
+        <div *ngFor="let msgs of messages;let i=index">
+          <input class="nm_input" [(ngModel)]="msgs" [value]="msgs" style="width:80%;">
+          <button class="nm_success-button" (click)="DeleteMessage(msgs)" style="margin-left:2%;">
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="nm_input-container">
+        <span class="nm_input-title">Message</span>
+        <div >
+          <input class="nm_input" [(ngModel)]="message" [value]="message" style="width:80%;">
+          <button class="nm_success-button" (click)="AddMessage(message)" style="margin-left:2%;">
+            Add
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="nm_input-container">
+        <span class="nm_input-title">Delay (ms)</span>
+        <input class="nm_input" type="number" [(ngModel)]="inputsConfig.delay">
+      </div>
+      <div class="nm_input-container">
+        <span class="nm_input-title">Direction</span>
+        <select class="nm_input" (change)="onDirectionChange($event)">
+          <option *ngFor="let direction of directions" [value]="direction">{{direction}}</option>
+        </select>
+        <span class="nm_note">Note: multiple directions can't live at the same time.</span>
+      </div>
+      <div class="nm_checkbox-inputs-container">
         <div class="nm_input-container">
-            <span class="nm_input-title">Header</span>
-            <input class="nm_input" [(ngModel)]="inputsConfig.header">
+          <span class="nm_input-title">Display Icon</span>
+          <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayIcon"
+                 (change)="inputsConfig.displayIcon = !inputsConfig.displayIcon;">
         </div>
         <div class="nm_input-container">
-            <span class="nm_input-title">Message</span>
-            <input class="nm_input" [(ngModel)]="inputsConfig.msg">
+          <span class="nm_input-title">Display Progress Bar</span>
+          <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayProgressBar"
+                 (change)="inputsConfig.displayProgressBar = !inputsConfig.displayProgressBar;">
         </div>
         <div class="nm_input-container">
-            <span class="nm_input-title">Delay (ms)</span>
-            <input class="nm_input" type="number" [(ngModel)]="inputsConfig.delay">
+          <span class="nm_input-title">Closeable</span>
+          <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable"
+                 (change)="inputsConfig.closeable = !inputsConfig.closeable;">
         </div>
-        <div class="nm_input-container">
-            <span class="nm_input-title">Direction</span>
-            <select class="nm_input" (change)="onDirectionChange($event)">
-                <option *ngFor="let direction of directions" [value]="direction">{{direction}}</option>
-            </select>
-            <span class="nm_note">Note: multiple directions can't live at the same time.</span>
-        </div>
-        <div class="nm_checkbox-inputs-container">
-            <div class="nm_input-container">
-                <span class="nm_input-title">Display Icon</span>
-                <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayIcon"
-                       (change)="inputsConfig.displayIcon = !inputsConfig.displayIcon;">
-            </div>
-            <div class="nm_input-container">
-                <span class="nm_input-title">Display Progress Bar</span>
-                <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayProgressBar"
-                       (change)="inputsConfig.displayProgressBar = !inputsConfig.displayProgressBar;">
-            </div>
-            <div class="nm_input-container">
-                <span class="nm_input-title">Closeable</span>
-                <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable"
-                       (change)="inputsConfig.closeable = !inputsConfig.closeable;">
-            </div>
-        </div>
+      </div>
     </div>
     <div class="nm_buttons">
         <button class="nm_success-button" (click)="open('SUCCESS')">

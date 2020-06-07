@@ -11,22 +11,28 @@
         </svg>
     </div>
     <div class="ngx_notification-msg-content">
-        <div class="ngx_notification-msg-header">
-            {{header}}
-        </div>
-        <div class="ngx_notification-msg-body">
-            {{msg}}
-        </div>
-    </div>
-    <div class="ngx_notification-msg-close-button">
+      <div class="ngx_notification-msg-header">
+        {{header}}
+      </div>
+      <div class="ngx_notification-msg-body" *ngIf="!isArray(msg)">
+       {{msg}}
+
+      </div>
+      <div class="ngx_notification-msg-body" *ngIf="isArray(msg)">
+        <ul *ngFor="let message of msg;let i=index">
+          <li>{{message}}</li>
+        </ul>
+
+      </div>
+      <div class="ngx_notification-msg-close-button">
         <button *ngIf="closeable"
                 (click)="close()">
-            <svg>
-                <use [attr.xlink:href]="'#clear'"/>
-            </svg>
+          <svg>
+            <use [attr.xlink:href]="'#clear'" />
+          </svg>
         </button>
+      </div>
     </div>
-</div>
 
 <svg display="none">
     <symbol width="24" height="24" viewBox="0 0 32 32" id="00CC69">
