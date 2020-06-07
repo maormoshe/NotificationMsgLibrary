@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     }
 
   open(status: any): void {
-       this.inputsConfig.msg = this.messages;
+    this.inputsConfig.msg = this.messages.length <= 1 ? this.messages[0].toString() : this.messages;
         this.ngxNotificationMsgService.open({
             status,
             ...this.inputsConfig,
@@ -49,14 +49,7 @@ export class AppComponent implements OnInit {
     }
 
 
-  openWithSingleMessage(status: any): void {
-    this.inputsConfig.msg = this.messages[0];
-    this.ngxNotificationMsgService.open({
-      status,
-      ...this.inputsConfig,
-      direction: this.direction
-    });
-  }
+   
 
 
     onDirectionChange(event: any): void {
