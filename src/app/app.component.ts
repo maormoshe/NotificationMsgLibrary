@@ -46,11 +46,7 @@ export class AppComponent implements OnInit {
             ...this.inputsConfig,
             direction: this.direction
         });
-    }
-
-
-   
-
+    } 
 
     onDirectionChange(event: any): void {
         this.direction = event.target.value;
