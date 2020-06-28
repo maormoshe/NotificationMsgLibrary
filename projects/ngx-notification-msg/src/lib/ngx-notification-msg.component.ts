@@ -88,7 +88,7 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     private initTheme(): void {
         this.element.nativeElement.style.setProperty('--ngx-notification-msg-delay', `${this.delay}ms`);
-        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.color);
+        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.color || this.statusToClass[this.status]);
     }
 
     private getDefaultPosition(): INgxNotificationPosition {
