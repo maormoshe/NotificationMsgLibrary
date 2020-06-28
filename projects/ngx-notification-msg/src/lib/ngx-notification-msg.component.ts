@@ -8,8 +8,15 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, I
 export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
     private static readonly DELAY_ON_CLICK = 400;
 
+    statusToClass = {
+        [NgxNotificationStatusMsg.NONE]: '',
+        [NgxNotificationStatusMsg.INFO]: '#0067FF',
+        [NgxNotificationStatusMsg.FAILURE]: '#FE355A',
+        [NgxNotificationStatusMsg.SUCCESS]: '#00CC69'
+    };
     @Input() status: NgxNotificationStatusMsg = NgxNotificationStatusMsg.NONE;
     @Input() direction: NgxNotificationDirection = NgxNotificationDirection.TOP;
+    @Input() color: string = this.statusToClass[this.status];
     @Input() displayProgressBar = true;
     @Input() displayIcon = true;
     @Input() header: string;
@@ -22,12 +29,6 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     componentState: NgxNotificationMsgComponentState = NgxNotificationMsgComponentState.CLOSE;
     componentStates = NgxNotificationMsgComponentState;
-    statusToClass = {
-        [NgxNotificationStatusMsg.NONE]: '',
-        [NgxNotificationStatusMsg.INFO]: '#0067FF',
-        [NgxNotificationStatusMsg.FAILURE]: '#FE355A',
-        [NgxNotificationStatusMsg.SUCCESS]: '#00CC69'
-    };
     readonly none = 'NONE';
 
     private closeTimeout;
@@ -87,7 +88,7 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     private initTheme(): void {
         this.element.nativeElement.style.setProperty('--ngx-notification-msg-delay', `${this.delay}ms`);
-        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.statusToClass[this.status]);
+        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.color || this.statusToClass[this.status]);
     }
 
     private getDefaultPosition(): INgxNotificationPosition {
@@ -177,4 +178,5 @@ export interface INgxNotificationMsgConfig {
     displayIcon?: boolean;
     displayProgressBar?: boolean;
     closeable?: boolean;
+    color?: string;
 }
