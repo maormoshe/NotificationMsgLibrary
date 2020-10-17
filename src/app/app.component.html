@@ -8,7 +8,7 @@
         </div>
         <div class="nm_input-container">
             <span class="nm_input-title">Messages</span>
-            <div *ngFor="let msg of inputsConfig.messages">
+            <div *ngFor="let msg of inputsConfig.messages;let index = index">
                 <input class="nm_input"
                        [(ngModel)]="msg">
                 <button class="nm_success-button"
