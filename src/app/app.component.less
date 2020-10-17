@@ -2,7 +2,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 80px;
+  margin-top: 2px;
   display: grid;
   justify-items: center;
   font-family: 'Open Sans', 'Arial', sans-serif;
@@ -17,9 +17,10 @@
 
   .nm_inputs {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(5, auto);
     grid-gap: 20px;
     width: 600px;
+
 
     .nm_checkbox-inputs-container {
       display: flex;
@@ -29,6 +30,19 @@
     .nm_input-container {
       display: flex;
       flex-direction: column;
+
+      div {
+        display: flex;
+        width: 100%;
+
+        input {
+          flex-grow: 1;
+        }
+      }
+
+      div:not(:first-child) {
+        margin: 10px 0 0 0;
+      }
 
       .nm_input-title {
         height: 18px;
@@ -40,7 +54,8 @@
       }
 
       .nm_input {
-        height: 22px;
+        height: 34px;
+        box-sizing: border-box;
         border: 1px solid #717075;
         border-radius: 2px;
         padding: 5px;

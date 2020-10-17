@@ -13,7 +13,12 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
     @Input() displayProgressBar = true;
     @Input() displayIcon = true;
     @Input() header: string;
-    @Input() msg: string;
+
+    @Input()
+    set messages(messages: string[]) {
+        this.msgs = [...messages];
+    }
+
     @Input() delay = 3000;
     @Input() closeable = true;
     @Input() index: number;
@@ -28,8 +33,9 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
         [NgxNotificationStatusMsg.FAILURE]: '#FE355A',
         [NgxNotificationStatusMsg.SUCCESS]: '#00CC69'
     };
-    readonly none = 'NONE';
+    msgs: string[] = [];
 
+    private readonly NONE = 'NONE';
     private closeTimeout;
     private destroyTimeout;
     private referencePointTimestamp;
@@ -48,6 +54,25 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
             this.componentState = NgxNotificationMsgComponentState.OPEN;
             this.cd.markForCheck();
         });
+    }
+
+    isNotificationMsgOpened(): boolean {
+        return this.componentState === this.componentStates.OPEN;
+    }
+
+    isProgressBarDisplayed(): boolean {
+        return this.status !== this.NONE && this.displayProgressBar;
+    }
+
+    isIconDisplayed(): boolean {
+        return this.status !== this.NONE && this.displayIcon;
+    }
+
+    getPosition(): INgxNotificationPosition {
+        return {
+            ...this.getDefaultPosition(),
+            ...(this.componentState === this.componentStates.OPEN && this.getDynamicPosition())
+        };
     }
 
     mouseEnter(): void {
@@ -70,13 +95,6 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             this.destroy.emit();
         }, NgxNotificationMsgComponent.DELAY_ON_CLICK);
-    }
-
-    getPosition(): INgxNotificationPosition {
-        return {
-            ...this.getDefaultPosition(),
-            ...(this.componentState === this.componentStates.OPEN && this.getDynamicPosition())
-        };
     }
 
     private init(): void {
@@ -172,7 +190,7 @@ export interface INgxNotificationMsgConfig {
     status?: NgxNotificationStatusMsg;
     direction?: NgxNotificationDirection;
     header?: string;
-    msg: string;
+    messages: string[];
     delay?: number;
     displayIcon?: boolean;
     displayProgressBar?: boolean;

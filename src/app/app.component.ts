@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
         NgxNotificationDirection.TOP_LEFT
     ];
     direction: NgxNotificationDirection = this.directions[0];
+    message: string;
 
     constructor(private readonly ngxNotificationMsgService: NgxNotificationMsgService) {
 
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.inputsConfig = {
             header: 'Ops...',
-            msg: 'Anyone with access can view your invited visitors.',
+            messages: ['Anyone with access can view your invited visitors.'],
             delay: 3000,
             displayIcon: true,
             displayProgressBar: true,
@@ -47,5 +48,14 @@ export class AppComponent implements OnInit {
 
     onDirectionChange(event: any): void {
         this.direction = event.target.value;
+    }
+
+    addMessage(): void {
+        this.inputsConfig.messages.push(this.message);
+        this.message = '';
+    }
+
+    removeMessage(message): void {
+        this.inputsConfig.messages = this.inputsConfig.messages.filter(_ => _ !== message);
     }
 }

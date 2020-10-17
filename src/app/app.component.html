@@ -3,52 +3,87 @@
     <div class="nm_inputs">
         <div class="nm_input-container">
             <span class="nm_input-title">Header</span>
-            <input class="nm_input" [(ngModel)]="inputsConfig.header">
+            <input class="nm_input"
+                   [(ngModel)]="inputsConfig.header">
         </div>
         <div class="nm_input-container">
-            <span class="nm_input-title">Message</span>
-            <input class="nm_input" [(ngModel)]="inputsConfig.msg">
+            <span class="nm_input-title">Messages</span>
+            <div *ngFor="let msg of inputsConfig.messages">
+                <input class="nm_input"
+                       [(ngModel)]="msg"
+                       [value]="msg">
+                <button class="nm_success-button"
+                        (click)="removeMessage(msg)">
+                    Remove
+                </button>
+            </div>
+            <div>
+                <input class="nm_input"
+                       [(ngModel)]="message"
+                       [value]="message">
+                <button class="nm_success-button"
+                        (click)="addMessage()">
+                    Add
+                </button>
+            </div>
         </div>
+
         <div class="nm_input-container">
             <span class="nm_input-title">Delay (ms)</span>
-            <input class="nm_input" type="number" [(ngModel)]="inputsConfig.delay">
+            <input class="nm_input"
+                   type="number"
+                   [(ngModel)]="inputsConfig.delay">
         </div>
         <div class="nm_input-container">
             <span class="nm_input-title">Direction</span>
-            <select class="nm_input" (change)="onDirectionChange($event)">
-                <option *ngFor="let direction of directions" [value]="direction">{{direction}}</option>
+            <select class="nm_input"
+                    (change)="onDirectionChange($event)">
+                <option *ngFor="let direction of directions"
+                        [value]="direction">
+                    {{direction}}
+                </option>
             </select>
             <span class="nm_note">Note: multiple directions can't live at the same time.</span>
         </div>
         <div class="nm_checkbox-inputs-container">
             <div class="nm_input-container">
                 <span class="nm_input-title">Display Icon</span>
-                <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayIcon"
+                <input class="nm_input"
+                       type="checkbox"
+                       [checked]="inputsConfig.displayIcon"
                        (change)="inputsConfig.displayIcon = !inputsConfig.displayIcon;">
             </div>
             <div class="nm_input-container">
                 <span class="nm_input-title">Display Progress Bar</span>
-                <input class="nm_input" type="checkbox" [checked]="inputsConfig.displayProgressBar"
+                <input class="nm_input"
+                       type="checkbox"
+                       [checked]="inputsConfig.displayProgressBar"
                        (change)="inputsConfig.displayProgressBar = !inputsConfig.displayProgressBar;">
             </div>
             <div class="nm_input-container">
                 <span class="nm_input-title">Closeable</span>
-                <input class="nm_input" type="checkbox" [checked]="inputsConfig.closeable"
+                <input class="nm_input"
+                       type="checkbox"
+                       [checked]="inputsConfig.closeable"
                        (change)="inputsConfig.closeable = !inputsConfig.closeable;">
             </div>
         </div>
     </div>
     <div class="nm_buttons">
-        <button class="nm_success-button" (click)="open('SUCCESS')">
+        <button class="nm_success-button"
+                (click)="open('SUCCESS')">
             Success
         </button>
-        <button class="nm_failure-button" (click)="open('FAILURE')">
+        <button class="nm_failure-button"
+                (click)="open('FAILURE')">
             Failure
         </button>
-        <button class="nm_info-button" (click)="open('INFO')">
+        <button class="nm_info-button"
+                (click)="open('INFO')">
             Info
         </button>
-        <button class="nm_none-button" (click)="open('NONE')">
+        <button class="nm_none-button"
+                (click)="open('NONE')">
             None
         </button>
     </div>
