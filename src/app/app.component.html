@@ -10,8 +10,7 @@
             <span class="nm_input-title">Messages</span>
             <div *ngFor="let msg of inputsConfig.messages">
                 <input class="nm_input"
-                       [(ngModel)]="msg"
-                       [value]="msg">
+                       [(ngModel)]="msg">
                 <button class="nm_success-button"
                         (click)="removeMessage(msg)">
                     Remove
@@ -19,8 +18,7 @@
             </div>
             <div>
                 <input class="nm_input"
-                       [(ngModel)]="message"
-                       [value]="message">
+                       [(ngModel)]="message">
                 <button class="nm_success-button"
                         (click)="addMessage()">
                     Add
