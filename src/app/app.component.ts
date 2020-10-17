@@ -11,8 +11,6 @@ import {
     styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  public messages: any[] = ['Anyone with access can view your invited visitors.','Sample Message'];
-  public message: string;
     inputsConfig: INgxNotificationMsgConfig;
     directions: NgxNotificationDirection[] = [
         NgxNotificationDirection.TOP,
@@ -23,6 +21,7 @@ export class AppComponent implements OnInit {
         NgxNotificationDirection.TOP_LEFT
     ];
     direction: NgxNotificationDirection = this.directions[0];
+    message: string;
 
     constructor(private readonly ngxNotificationMsgService: NgxNotificationMsgService) {
 
@@ -30,8 +29,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.inputsConfig = {
-          header: 'Ops...',
-          msg: this.messages,
+            header: 'Ops...',
+            messages: ['Anyone with access can view your invited visitors.'],
             delay: 3000,
             displayIcon: true,
             displayProgressBar: true,
@@ -39,23 +38,24 @@ export class AppComponent implements OnInit {
         };
     }
 
-  open(status: any): void {
-    this.inputsConfig.msg = this.messages.length <= 1 ? this.messages[0].toString() : this.messages;
+    open(status: any): void {
         this.ngxNotificationMsgService.open({
             status,
             ...this.inputsConfig,
             direction: this.direction
         });
-    } 
+    }
 
     onDirectionChange(event: any): void {
         this.direction = event.target.value;
-  }
-  AddMessage(): void {
-    this.messages.push(this.message);
-    this.message = null;
-  }
-  DeleteMessage(message): void {
-    this.messages = this.messages.filter(x => x !== message);
-  }
+    }
+
+    AddMessage(): void {
+        this.inputsConfig.messages.push(this.message);
+        this.message = '';
+    }
+
+    DeleteMessage(message): void {
+        this.inputsConfig.messages = this.inputsConfig.messages.filter(_ => _ !== message);
+    }
 }
