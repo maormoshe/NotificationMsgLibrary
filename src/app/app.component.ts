@@ -50,12 +50,12 @@ export class AppComponent implements OnInit {
         this.direction = event.target.value;
     }
 
-    AddMessage(): void {
+    addMessage(): void {
         this.inputsConfig.messages.push(this.message);
         this.message = '';
     }
 
-    DeleteMessage(message): void {
+    removeMessage(message): void {
         this.inputsConfig.messages = this.inputsConfig.messages.filter(_ => _ !== message);
     }
 }

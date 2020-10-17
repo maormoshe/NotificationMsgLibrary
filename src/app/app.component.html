@@ -13,7 +13,7 @@
                        [(ngModel)]="msg"
                        [value]="msg">
                 <button class="nm_success-button"
-                        (click)="DeleteMessage(msg)">
+                        (click)="removeMessage(msg)">
                     Remove
                 </button>
             </div>
@@ -22,7 +22,7 @@
                        [(ngModel)]="message"
                        [value]="message">
                 <button class="nm_success-button"
-                        (click)="AddMessage()">
+                        (click)="addMessage()">
                     Add
                 </button>
             </div>
