@@ -6,7 +6,7 @@
 Angular Library to display notification message.
 
 ## Demo
-
+ƒ
 - You may visit the online usage example on https://maormoshe.github.io/NotificationMsgLibrary/
 
 ![](demo.gif)
