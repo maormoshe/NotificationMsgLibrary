@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
         this.inputsConfig = {
             header: 'Ops...',
             messages: ['Anyone with access can view your invited visitors.'],
+            color: '',
             delay: 3000,
             displayIcon: true,
             displayProgressBar: true,

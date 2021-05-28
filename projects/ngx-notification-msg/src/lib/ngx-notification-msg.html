@@ -7,7 +7,7 @@
     <div class="ngx_notification-msg-icon-wrapper"
          *ngIf="isIconDisplayed()">
         <svg>
-            <use [attr.xlink:href]="statusToClass[status]"/>
+            <use [attr.xlink:href]="'#' + status"/>
         </svg>
     </div>
     <div class="ngx_notification-msg-content">
@@ -34,19 +34,19 @@
     </div>
 
     <svg display="none">
-        <symbol width="24" height="24" viewBox="0 0 32 32" id="00CC69">
+        <symbol width="24" height="24" viewBox="0 0 32 32" id="SUCCESS">
             <path d="M16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 Z M23.6,9.6 L13,20.2 L8.8,16 L7.4,17.4 L13,23 L25,11 L23.6,9.6 Z"/>
         </symbol>
     </svg>
 
     <svg display="none">
-        <symbol width="24" height="24" viewBox="0 0 32 32" id="FE355A">
+        <symbol width="24" height="24" viewBox="0 0 32 32" id="FAILURE">
             <path d="M16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 Z M21.59,9 L16,14.59 L10.41,9 L9,10.41 L14.59,16 L9,21.59 L10.41,23 L16,17.41 L21.59,23 L23,21.59 L17.41,16 L23,10.41 L21.59,9 Z"/>
         </symbol>
     </svg>
 
     <svg display="none">
-        <symbol width="24" height="24" viewBox="0 0 32 32" id="0067FF">
+        <symbol width="24" height="24" viewBox="0 0 32 32" id="INFO">
             <path d="M16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 Z M17,12 L15,12 L15,24 L17,24 L17,12 Z M17,8 L15,8 L15,10 L17,10 L17,8 Z"/>
         </symbol>
     </svg>

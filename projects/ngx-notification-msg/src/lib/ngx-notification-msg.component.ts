@@ -13,6 +13,7 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
     @Input() displayProgressBar = true;
     @Input() displayIcon = true;
     @Input() header: string;
+    @Input() color: string;
 
     @Input()
     set messages(messages: string[]) {
@@ -27,7 +28,7 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     componentState: NgxNotificationMsgComponentState = NgxNotificationMsgComponentState.CLOSE;
     componentStates = NgxNotificationMsgComponentState;
-    statusToClass = {
+    statusToColor = {
         [NgxNotificationStatusMsg.NONE]: '',
         [NgxNotificationStatusMsg.INFO]: '#0067FF',
         [NgxNotificationStatusMsg.FAILURE]: '#FE355A',
@@ -105,7 +106,7 @@ export class NgxNotificationMsgComponent implements OnInit, AfterViewInit {
 
     private initTheme(): void {
         this.element.nativeElement.style.setProperty('--ngx-notification-msg-delay', `${this.delay}ms`);
-        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.statusToClass[this.status]);
+        this.element.nativeElement.style.setProperty('--ngx-notification-msg-color', this.color || this.statusToColor[this.status]);
     }
 
     private getDefaultPosition(): INgxNotificationPosition {
@@ -191,6 +192,7 @@ export interface INgxNotificationMsgConfig {
     direction?: NgxNotificationDirection;
     header?: string;
     messages: string[];
+    color?: string;
     delay?: number;
     displayIcon?: boolean;
     displayProgressBar?: boolean;

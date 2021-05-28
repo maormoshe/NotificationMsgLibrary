@@ -83,6 +83,7 @@ interface INgxNotificationMsgConfig {
     direction?: NgxNotificationDirection;
     header?: string;
     messages: string[];
+    color?: string;
     delay?: number;
     displayIcon?: boolean;
     displayProgressBar?: boolean;
